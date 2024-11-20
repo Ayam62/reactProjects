@@ -11,10 +11,15 @@ import FoodInput from './components/FoodInput.jsx';
 
 function App() {
   let foods=["dal","bhat","tarkari"]
-  let textToShow;
+
+  let [textToShow,settextToShow]=useState("Food entered by User")
+  console.log(`current val=${textToShow}`)
+
+
   const handleOnChange=(e)=>{
     console.log(e.target.value)
-    textToShow=e.target.value//stateless
+    // settextToShow(e.target.value)
+    // console.log(`Updated state: ${textToShow}`);
 }
   
   return (<>
