@@ -10,31 +10,37 @@ import FoodInput from './components/FoodInput.jsx';
 
 
 function App() {
-  let foods=["dal","bhat","tarkari"]
+
+  let[foods,setFoods]=useState([])
 
   let [textToShow,settextToShow]=useState("Food entered by User")
   console.log(`current val=${textToShow}`)
 
-
   const handleOnChange=(e)=>{
     console.log(e.target.value)
-    // settextToShow(e.target.value)
-    // console.log(`Updated state: ${textToShow}`);
+    settextToShow(e.target.value)
 }
-  
+  const handleOnKeyDown=(e)=>{
+     if(e.key==="Enter"){
+      console.log(e.target.value)
+      let newFood=e.target.value
+      let newItems=[...foods,newFood]
+      setFoods(newItems);
+      event.target.value=""
+    }
+  }
+
   return (<>
     <Container>
       <h1 className='food-heading'>Healthy Food Items</h1>
-      <FoodInput></FoodInput>
+      <FoodInput
+        // handleOnChange={handleOnChange}
+        handleOnKeyDown={handleOnKeyDown}
+      ></FoodInput>
       <p>{textToShow}</p>
       <ErrorMsg foods={foods}></ErrorMsg>
-      <Food foods={foods}
-            handleOnChange={handleOnChange}
-      ></Food>
+      <Food foods={foods}></Food>
     </Container>
-    {/* <Container>
-      <p>Hey Eat the above dishes</p>
-    </Container> */}
     </>
   )
 }

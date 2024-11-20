@@ -1,7 +1,7 @@
 const ErrorMsg=({foods})=>{
     return(
         <>
-          {foods.length==0  && <h3>Sed</h3>}
+          {foods.length==0  && <h3>I'am still hungry</h3>}
         </>
     )
 }
