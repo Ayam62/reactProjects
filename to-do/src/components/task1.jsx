@@ -1,4 +1,4 @@
-const Task1=({task,date})=>{
+const Task1=({task,date,handleDlt})=>{
 
     return (
     <div class="row g-0 text-center task-container">
@@ -9,7 +9,9 @@ const Task1=({task,date})=>{
         <p>{date}</p>
       </div>
       <div class="col-6 col-md-3 add-task box">
-        <button type="button" className="btn btn-danger">
+        <button type="button" className="btn btn-danger"
+        onClick={()=>handleDlt(task,date)}
+        >
           Delete
         </button>
       </div>
