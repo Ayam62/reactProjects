@@ -1,38 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Title from './components/Title';
-import Task1 from './components/task1';
-import TodoItems from './components/todoitems';
-import Heading from './components/heading';
-import Error from '../../04_Calcluater/src/components/error';
+import { useState,useReducer } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Title from "./components/Title";
+import Task1 from "./components/task1";
+import TodoItems from "./components/todoitems";
+import Heading from "./components/heading";
+import Error from "../../04_Calcluater/src/components/error";
+import TodoItemsContext from "./store/toDoStore";
+
+const todoItemsReducer=(action)=>{
+  return[];
+}
 
 function App() {
- 
-   const [toDo,settoDo]=useState([])
+  //const [toDo, settoDo] = useState([]);
+  const [toDo,dispatchToDoItems]=useReducer(todoItemsReducer,[]);
 
-  const handleAdd=(name,date)=>{
-    const todoArr=[...toDo,{name,date}]
-    settoDo(todoArr);
-  }
-  const handleDlt=(itemName,itemDate)=>{
-    const newToDoItems=toDo.filter((item)=>
-      item.name!=itemName
-    )
-    settoDo(newToDoItems)
-  }
+  // const sethandleAdd = (name, date) => {
+  //   settoDo((currentVal) => {
+  //     const todoArr = [...currentVal, { name, date }];
+  //     return todoArr;
+  //   });
+  // };
+  const addNewItem=(name,date)
 
+
+  const sethandleDlt = (itemName, itemDate) => {
+    const newToDoItems = toDo.filter((item) => item.name != itemName);
+    settoDo(newToDoItems);
+  };
 
   return (
     <>
-      <Heading></Heading>
-      <Title handleAdd={handleAdd}></Title>
-      <Error todo={toDo}></Error>
-      <TodoItems todo={toDo} handleDlt={handleDlt}></TodoItems>
+      <TodoItemsContext.Provider value={{
+        items:toDo,
+        sethandleAdd:sethandleAdd,
+        sethandleDlt:sethandleDlt,
+        }}>
+        <Heading></Heading>
+        <Title></Title>
+        <Error todo={toDo}></Error>
+        <TodoItems></TodoItems>
+      </TodoItemsContext.Provider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

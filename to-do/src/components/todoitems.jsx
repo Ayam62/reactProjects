@@ -1,14 +1,18 @@
 import Task1 from './task1'
+import { useContext } from 'react'
+import TodoItemsContext from '../store/toDoStore'
 
-const TodoItems = ({ todo, handleDlt }) => {
+const TodoItems = () => {
+    const {items,sethandleDlt}=useContext(TodoItemsContext)
+    console.log(items)
   return (
     <>
-      {todo.map((item) => (
+      {items.map((item) => (
         <Task1
           task={item.name}
           date={item.date}
-          handleDlt={handleDlt}
-          key={item}
+        //   sethandleDlt={sethandleDlt}
+          key={item.id}
         ></Task1>
       ))}
     </>
