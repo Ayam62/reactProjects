@@ -10,8 +10,12 @@ import Heading from "./components/heading";
 import Error from "../../04_Calcluater/src/components/error";
 import TodoItemsContext from "./store/toDoStore";
 
-const todoItemsReducer=(action)=>{
-  return[];
+const todoItemsReducer=(currState,action)=>{
+  if(action.type=="newItem"){
+    const todoArr = [...currentVal, { name:action.payload.name, date:action.payload.date }];
+    return todoArr;
+  }
+  else if(action.type=="dltItem")
 }
 
 function App() {
@@ -24,13 +28,21 @@ function App() {
   //     return todoArr;
   //   });
   // };
-  const addNewItem=(name,date)
+  const addNewItem=(name,date){
+    const newItems={
+      type="newItem",
+      payload:{
+        name,
+        date
+      }
+    }
+  }
 
 
-  const sethandleDlt = (itemName, itemDate) => {
-    const newToDoItems = toDo.filter((item) => item.name != itemName);
-    settoDo(newToDoItems);
-  };
+  // const sethandleDlt = (itemName, itemDate) => {
+  //   const newToDoItems = toDo.filter((item) => item.name != itemName);
+  //   settoDo(newToDoItems);
+  // };
 
   return (
     <>
