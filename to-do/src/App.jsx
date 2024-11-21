@@ -10,20 +10,8 @@ import Heading from './components/heading';
 import Error from '../../04_Calcluater/src/components/error';
 
 function App() {
-  //  const initialtoDoItems=[
-  //   {
-  //     name:"Maths Homework",
-  //     date:"10/2/3"
-  //   },
-  //   {
-  //     name:"Physics Homework",
-  //     date:"10/2/3"
-  //   }
-  //  ]
+ 
    const [toDo,settoDo]=useState([])
-
-
-
 
   const handleAdd=(name,date)=>{
     const todoArr=[...toDo,{name,date}]
